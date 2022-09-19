@@ -13,22 +13,19 @@ def login():
 			username = request.form['username']
 			password = request.form['password']
 			print(password)
-         	# Check if account exists using MySQL
-        	cursor.execute('SELECT * FROM cloobot_employee WHERE username = %s', (username,))
-        	# Fetch one record and return result
-        	account = cursor.fetchone()
-
-        	if account:
-        		password_rs = account['password']
-            	print(password_rs)
-            	if check_password_hash(password_rs, password):
-                	return redirect("./fronted/src/app/dashboard/dashboard.component.ts")
+			cur.execute('SELECT * FROM cloobot_employee WHERE username = %s', (username,))
+			account = cur.fetchone()
+			if account:
+				password_rs = account['password']
+				if check_password_hash(password_rs, password):
+            		return redirect("/fronted/src/app/dashboard/dashboard.component.ts")
             	else:
-                	# Account doesnt exist or username/password incorrect
-                	flash('Incorrect username/password')
+            		flash('Incorrect username/password')
         	else:
-            	# Account doesnt exist or username/password incorrect
+           # Account doesnt exist or username/password incorrect
             	flash('Incorrect username/password')
+        else:
+        	print("Error")
 
 if __name__ == "__main__":
     app.run(debug=True)
