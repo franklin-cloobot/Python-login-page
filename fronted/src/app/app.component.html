@@ -4,7 +4,7 @@
   <h1> Home Page </h1>
   <br><br>
   <div class="form-box">
-    <form action="http://127.0.0.1:5000/login" method="post">
+    <form >
       <div class="content">
         <label>User Name:</label>
         <div class="inp">
@@ -18,8 +18,9 @@
         </div>
       </div>
       <div class="submit-btn">
-        <button type="submit" onclick="loginsuccess()">Login</button>
+        <button type="submit" (click)="move_to_log()">Login</button>
       </div>
     </form>
   </div>
 </div>
+<router-outlet></router-outlet>

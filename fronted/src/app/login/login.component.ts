@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,29 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
   fileName = '';
 
-    constructor(private http: HttpClient) {}
+    constructor(private router: Router) {}
 
-    onFileSelected(event) {
-
-        const file:File = event.target.files[0];
-
-        if (file) {
-
-            this.fileName = file.name;
-
-            const formData = new FormData();
-
-            formData.append("thumbnail", file);
-
-            const upload$ = this.http.post("/api/thumbnail-upload", formData);
-
-            upload$.subscribe();
-        }
+    move_to_bar(){
+      this.router.navigate(['/barchart'])
     }
+    
 }
